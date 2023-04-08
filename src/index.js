@@ -6,6 +6,10 @@ const app = express()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
+//connect database 
+mongoose.connect(process.env.MONGO_URL,{useNewUrlParser:true})
+.then(()=>console.log("mongodb is connected"))
+.catch((err)=>{console.log(err.message)})
 
 app.use('/',route)
 
